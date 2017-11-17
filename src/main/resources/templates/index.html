@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" th:action="@{'/user/new'}"
+      th:object="${userForm}">
+        <label>Imie</label>
+        <input type="text" rows="10" th:field="*{firstName}">
+        </input>
+        <label>Nazwisko</label>
+        <input type="text" rows="10" th:field="*{lastName}">
+        </input>
+        <label>Login</label>
+        <input type="text" rows="10" th:field="*{loginName}">
+        </input>
+    </form>
+
+    <table>
+        <th>
+            <td>nr</td>
+            <td>imie</td>
+            <td>nazwisko</td>
+            <td>login</td>
+        </th>
+        <th:block th:each="user, iter : ${users}">
+            <tr>
+                <td th:text="${iter.index}">...</td>
+                <td th:text="${user.firstName}">...</td>
+                <td th:text="${user.lastName}">...</td>
+                <td colspan="2" th:text="${user.loginName}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>
